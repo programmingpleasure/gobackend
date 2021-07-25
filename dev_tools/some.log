@@ -1,0 +1,49 @@
+2021-07-25 13:22:58.748278 I | etcdmain: etcd Version: 3.3.10
+2021-07-25 13:22:58.748998 I | etcdmain: Git SHA: 27fc7e2
+2021-07-25 13:22:58.749003 I | etcdmain: Go Version: go1.10.4
+2021-07-25 13:22:58.749005 I | etcdmain: Go OS/Arch: linux/amd64
+2021-07-25 13:22:58.749008 I | etcdmain: setting maximum number of CPUs to 6, total number of available CPUs is 6
+2021-07-25 13:22:58.749079 N | etcdmain: the server is already initialized as member before, starting as etcd member...
+2021-07-25 13:22:58.749194 I | embed: peerTLS: cert = /run/config/pki/etcd/peer.crt, key = /run/config/pki/etcd/peer.key, ca = , trusted-ca = /run/config/pki/etcd/ca.crt, client-cert-auth = true, crl-file =
+2021-07-25 13:22:58.751102 I | embed: listening for peers on https://192.168.65.3:2380
+2021-07-25 13:22:58.751169 I | embed: listening for client requests on 127.0.0.1:2379
+2021-07-25 13:22:58.751292 I | embed: listening for client requests on 192.168.65.3:2379
+2021-07-25 13:22:58.814460 I | etcdserver: recovered store from snapshot at index 15191523
+2021-07-25 13:22:58.817700 I | mvcc: restore compact to 13224922
+2021-07-25 13:22:58.833863 I | mvcc: store.index: compact 13225224
+2021-07-25 13:22:58.834345 I | mvcc: resume scheduled compaction at 13225224
+2021-07-25 13:22:58.836125 I | mvcc: finished scheduled compaction at 13225224 (took 1.681645ms)
+2021-07-25 13:22:58.836389 I | etcdserver: name = docker-desktop
+2021-07-25 13:22:58.836418 I | etcdserver: data dir = /var/lib/etcd
+2021-07-25 13:22:58.836425 I | etcdserver: member dir = /var/lib/etcd/member
+2021-07-25 13:22:58.836428 I | etcdserver: heartbeat = 100ms
+2021-07-25 13:22:58.836430 I | etcdserver: election = 1000ms
+2021-07-25 13:22:58.836432 I | etcdserver: snapshot count = 10000
+2021-07-25 13:22:58.836509 I | etcdserver: advertise client URLs = https://192.168.65.3:2379
+2021-07-25 13:22:59.578766 I | etcdserver: restarting member 5a5fcaeaef75abff in cluster 6246e842008cf04d at commit index 15192399
+2021-07-25 13:22:59.578916 I | raft: 5a5fcaeaef75abff became follower at term 58
+2021-07-25 13:22:59.578947 I | raft: newRaft 5a5fcaeaef75abff [peers: [5a5fcaeaef75abff], term: 58, commit: 15192399, applied: 15191523, lastindex: 15192399, lastterm: 58]
+2021-07-25 13:22:59.579169 I | etcdserver/api: enabled capabilities for version 3.3
+2021-07-25 13:22:59.579213 I | etcdserver/membership: added member 5a5fcaeaef75abff [https://192.168.65.3:2380] to cluster 6246e842008cf04d from store
+2021-07-25 13:22:59.579232 I | etcdserver/membership: set the cluster version to 3.3 from store
+2021-07-25 13:22:59.580799 I | mvcc: restore compact to 13225224
+2021-07-25 13:22:59.583481 W | auth: simple token is not cryptographically signed
+2021-07-25 13:22:59.585092 I | etcdserver: starting server... [version: 3.3.10, cluster version: 3.3]
+2021-07-25 13:22:59.585886 I | etcdserver: 5a5fcaeaef75abff as single-node; fast-forwarding 9 ticks (election ticks 10)
+2021-07-25 13:22:59.592490 I | embed: ClientTLS: cert = /run/config/pki/etcd/server.crt, key = /run/config/pki/etcd/server.key, ca = , trusted-ca = /run/config/pki/etcd/ca.crt, client-cert-auth = true, crl-file =
+2021-07-25 13:23:00.580091 I | raft: 5a5fcaeaef75abff is starting a new election at term 58
+2021-07-25 13:23:00.580170 I | raft: 5a5fcaeaef75abff became candidate at term 59
+2021-07-25 13:23:00.580386 I | raft: 5a5fcaeaef75abff received MsgVoteResp from 5a5fcaeaef75abff at term 59
+2021-07-25 13:23:00.580412 I | raft: 5a5fcaeaef75abff became leader at term 59
+2021-07-25 13:23:00.580437 I | raft: raft.node: 5a5fcaeaef75abff elected leader 5a5fcaeaef75abff at term 59
+2021-07-25 13:23:00.581933 I | etcdserver: published {Name:docker-desktop ClientURLs:[https://192.168.65.3:2379]} to cluster 6246e842008cf04d
+2021-07-25 13:23:00.582042 I | embed: ready to serve client requests
+2021-07-25 13:23:00.582119 I | embed: ready to serve client requests
+2021-07-25 13:23:00.585552 I | embed: serving client requests on 127.0.0.1:2379
+2021-07-25 13:23:00.585730 I | embed: serving client requests on 192.168.65.3:2379
+2021-07-25 13:23:00.596973 I | embed: rejected connection from "127.0.0.1:50974" (error "tls: failed to verify client's certificate: x509: certificate specifies an incompatible key usage", ServerName "")
+WARNING: 2021/07/25 13:23:00 Failed to dial 127.0.0.1:2379: connection error: desc = "transport: authentication handshake failed: remote error: tls: bad certificate"; please retry.
+2021-07-25 13:23:00.598761 I | embed: rejected connection from "192.168.65.3:38804" (error "tls: failed to verify client's certificate: x509: certificate specifies an incompatible key usage", ServerName "")
+WARNING: 2021/07/25 13:23:00 Failed to dial 192.168.65.3:2379: connection error: desc = "transport: authentication handshake failed: remote error: tls: bad certificate"; please retry.
+proto: no coders for int
+proto: no encoder for ValueSize int [GetProperties]
