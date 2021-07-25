@@ -3,5 +3,10 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("hello, world!")
+	addSmile("hey team")
+	addSmile("any smile here?")
+}
+
+func addSmile(txt string) {
+	fmt.Printf("%s :)\n", txt)
 }
