@@ -1,0 +1,31 @@
+READ'n'PLAY:
+https://medium.com/@manus.can/learn-golang-basic-syntax-in-10-minutes-48608a315896
+https://golangbyexample.com/all-data-types-in-golang-with-examples
+
+Make a calculator:
+________________________________
+package main
+
+func main() {
+	var (
+		a         int
+		b         int
+		operation string
+	)
+    a = 2
+    b = 4
+    operation = "*"
+
+	//expected output:
+	//8
+}
+________________________________
+Advanced 1: 
+Request the args from command line: ./calc "6 / 2"
+Output: 3
+
+Advanced 2: 
+Make it workable with floats
+
+Advanced 3 (hard):
+Use https://github.com/rivo/tview to create a calculator with UI in your terminal
