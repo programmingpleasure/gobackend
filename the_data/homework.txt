@@ -1,0 +1,37 @@
+To READ:
+https://golangbot.com/structs/ - about structures
+https://blog.golang.org/slices-intro - slices
+https://golangdocs.com/maps-in-golang - maps
+https://golang.co/pointers-in-golang - pointers
+
+To CODE #1: 
+
+Edit the code to add: 
+- Ability to set an image size and file name from the command line
+- Add more colors please (let's make it shiny!)
+- I wanna this application to draw a things like a flags: 
+_______________________
+***********************
+@@@@@@@@@@@@@@@@@@@@@@@
++++++++++++++++++++++++
+#######################
+-----------------------
+All lines should have it's own colors (no repeating please!)
+The direction of the lines must be random (vertical, horizontal or at an angle of 45)
+
+
+To CODE #2: 
+
+Challenge: check if string is palindrome?
+For example:
+abba - palindrome
+programming_funny - nope.
+
+func main(){
+    isPalindrome("abba")
+}
+
+func isPalindrome(s string) bool {
+    // TODO: code here
+}
+
