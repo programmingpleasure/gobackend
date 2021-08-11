@@ -174,9 +174,9 @@ func deleteColorElement(elements []*color.RGBA, index int) []*color.RGBA {
 func palindromeP(sentence string) bool {
 	var sanitized string = sanitize(sentence)
 
-	for s, e := 0, utf8.RuneCountInString(sanitized); s <= e; s, e = s+1, e-1 {
+	for s, e := 0, len(sanitized); s <= e; {
 
-		startingRune, _ := utf8.DecodeRuneInString(sanitized[s:])
+		startingRune, size := utf8.DecodeRuneInString(sanitized[s:])
 		if startingRune == utf8.RuneError {
 			return false
 		}
@@ -185,6 +185,9 @@ func palindromeP(sentence string) bool {
 		if endingRune != startingRune {
 			return false
 		}
+
+		e -= size
+		s += size
 	}
 
 	return true

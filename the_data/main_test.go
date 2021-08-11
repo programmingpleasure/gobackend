@@ -3,7 +3,7 @@ package main
 import "testing"
 
 func TestPalindromeP(t *testing.T) {
-	if !palindromeP("a man, a plan, a canal, Panama.") {
+	if !palindromeP("平a man, a plan, a canal, Panama.平") {
 		t.Error("this should have detected as a palindrome")
 	}
 
