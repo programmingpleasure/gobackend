@@ -5,9 +5,7 @@ import (
 	"strings"
 )
 
-type (
-	checkFunc func(keyWord, line string) (string, error)
-)
+type checkFunc func(keyWord, line string) (string, error)
 
 func checkFull(content []string, keyWord string, checkFunc checkFunc, formatter formatter) ([]string, error) {
 	// TODO: add test

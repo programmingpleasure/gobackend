@@ -7,7 +7,6 @@ import (
 )
 
 func TestColorFormat(t *testing.T) {
-
 	cases := map[string]struct {
 		line, keword, expected string
 	}{

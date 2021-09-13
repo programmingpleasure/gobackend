@@ -15,7 +15,6 @@ import (
 // 		2.3	Create files, not packages
 //		2.4 Don't use "else" and "must" functions
 //		2.5 Always to check error and think about the future (but not too much)
-//		2.6
 // 3. Dependencies
 //		3.1 Inject them all
 //		3.2 Use constructors (what is it?)
