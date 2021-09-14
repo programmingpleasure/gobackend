@@ -1,0 +1,15 @@
+TO READ: 
+https://www.geeksforgeeks.org/bitwise-not-operator-in-golang/ - about ^
+https://medium.com/learning-the-go-programming-language/bit-hacking-with-go-e0acee258827 - bit hacking :) 
+https://phoenixnap.com/kb/linux-file-permissions - about files permissions
+
+Read main file and play with a bits there: set bit, clear bit etc.
+
+TO CODE: 
+Use my template and make an app that do:
+
+- Ask user for input and save that in a file
+- Perform some operations on bits and show the result in bin format (yeah, there must be another user input)
+- Save the value after user type "exit"
+- Implement "clean up" operation - file must be deleted after user type "clean" as an input
+- Implement "help" command

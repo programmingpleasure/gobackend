@@ -1,0 +1,31 @@
+TO READ:
+https://golang.org/ref/mod -> about modules in golang
+https://golang.org/doc/modules/managing-dependencies -> another one :) 
+https://www.w3schools.com/html/html_intro.asp -> html intro
+https://tour.golang.org/welcome/1 -> must be completed for 2 weeks
+https://careerfoundry.com/en/blog/data-analytics/web-scraping-guide/ -> about web scrapping
+https://www.golang-book.com/books/intro/10 -> intro to the concurrency
+https://golangbyexample.com/wrapping-and-unwrapping-error-golang/ -> about error wrapping
+https://medium.com/full-stack-tips/dependency-injection-in-go-99b09e2cc480 -> deps injection
+
+TO SUBSCRIBE: 
+https://golangweekly.com
+
+TO CODE:
+1. Parse the codebase of the task
+2. Modify app to not scrap twice the one page
+3. Add stats into the app. After exit if must show:
+- the amount of downloaded images
+- average time for download one image (download speed)
+- list of pages that was scrapped
+- list of errors
+
+ADVANCED:
+4. Must support relative links
+    <img=/static/img.jpeg>
+
+
+
+
+
+

@@ -1,0 +1,16 @@
+TO READ:
+https://golangdocs.com/regex-in-golang-regexp-package - about regexp
+https://progolang.com/regular-expressions-in-go/
+https://tour.golang.org/welcome/1 - start the tour of go and read till this part https://tour.golang.org/methods/20
+https://www.gobeyond.dev/structuring-applications/ - about app structure a bit
+https://deepsource.io/blog/common-antipatterns-in-go/ - how we should not do :)
+https://tutorialedge.net/golang/go-modules-tutorial/ - about go mod
+
+TO CODE:
+- implement IgnoreCase
+- rewrite app to not store big files in memory
+- add ability to read from stdin (as grep do)
+- add ability to use regExp 
+
+ADVANCED:
+- Make this grep workable with http (let's imagine I wanna grep the http page)

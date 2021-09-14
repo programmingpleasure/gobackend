@@ -1,0 +1,67 @@
+package main
+
+import (
+	"fmt"
+)
+
+// & 	Binary AND Operator copies a bit to the result if it exists in both operands.
+// | 	Binary OR Operator copies a bit if it exists in either operand.
+// ^ 	Binary XOR Operator copies the bit if it is set in one operand but not both.
+
+var (
+	a,
+	b,
+	c uint8
+)
+
+func main() {
+
+	var user uint8
+	fmt.Println("clean", intToBin(user))
+	user = setBit(user, 1)
+	user = setBit(user, 0)
+	fmt.Println("after bit set", intToBin(user))
+
+	//fmt.Println(hasBit(user, 0))
+	user = clearBit(user, 0)
+	fmt.Println(user)
+}
+
+func intToBin(n uint8) string {
+	return fmt.Sprintf("%08b\n", n)
+}
+
+func swap(a, b *uint8) {
+	//fmt.Printf("before: \na: %d %s\nb: %d %s\n", *a, intToBin(*a), *b, intToBin(*b)
+	*a = *a ^ *b
+	//fmt.Printf("xor1: \na: %d %s\nb: %d %s\n", *a, intToBin(*a), *b, intToBin(*b))
+	*b = *a ^ *b
+	//fmt.Printf("xor2: \na: %d %s\nb: %d %s\n", *a, intToBin(*a), *b, intToBin(*b))
+	*a = *a ^ *b
+	//fmt.Printf("xor3: \na: %d %s\nb: %d %s\n", *a, intToBin(*a), *b, intToBin(*b))
+}
+
+// Sets the bit at pos in the integer n.
+func setBit(n uint8, pos uint8) uint8 {
+	n |= (1 << pos)
+	return n
+}
+
+// Clears the bit at pos in n.
+func clearBit(n uint8, pos uint8) uint8 {
+	mask := ^(1 << pos)
+	fmt.Println("user", intToBin(n))
+	fmt.Println("mask", intToBin(uint8(mask)))
+
+	n &= uint8(mask)
+	fmt.Println("total", intToBin(n))
+	return n
+}
+
+func hasBit(n uint8, pos uint8) bool {
+	fmt.Println("user", intToBin(n))
+	fmt.Println("mask", intToBin(1<<pos))
+	val := n & (1 << pos)
+	fmt.Println("bitwise AND:", intToBin(val))
+	return (val > 0)
+}
