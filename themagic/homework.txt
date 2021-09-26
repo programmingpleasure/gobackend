@@ -1,0 +1,20 @@
+TO READ:
+https://golangdocs.com/interfaces-in-golang 
+https://www.golangprograms.com/go-language/interface.html -> about interfaces
+https://core.telegram.org/bots/api -> about telegram bots API
+https://www.reddit.com/r/programming_funny/comments/pnkp1n/time_to_learn_collections/ - read about every kind of collections
+https://developers.google.com/protocol-buffers/
+https://www.w3schools.com/whatis/whatis_json.asp
+
+TO CODE:
+1. Create your own version of the bot (you need another API key)
+2. Add tests to all functions outside the main.go
+3. Implement another function that react on text message with name and response with a message of user's nationality https://api.nationalize.io/?name=harold.
+Flow must be: 
+/cat
+    // return cat image 
+/hello 
+    // return greeting message
+John
+    // 99%US, 20%CO, 1%SG 
+Have fun!
