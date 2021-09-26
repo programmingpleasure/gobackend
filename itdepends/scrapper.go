@@ -5,8 +5,10 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"net/url"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/PuerkitoBio/goquery"
 )
@@ -16,7 +18,8 @@ type (
 	// and donload images
 	scrapper interface {
 		// DownloadPage save all images on the page and return links that must be downloaded
-		downloadPage(URL string) ([]string, error)
+		scrapPage(URL string) (scrapData, error)
+		downloadImage(URL, savePath string) (uint64, uint64, error)
 	}
 
 	// scrapperImpl implement scrapper interface
@@ -29,24 +32,6 @@ func newScrapper(httpGetter httpGetter) scrapper {
 	return &scrapperImpl{
 		httpGetter: httpGetter,
 	}
-}
-
-func (si *scrapperImpl) downloadPage(seed string) ([]string, error) {
-	log.Println("download started:", seed)
-
-	data, err := si.scrapPage(seed)
-	if err != nil {
-		// we use Errorf(%w) to wrap errors in go code
-		return nil, fmt.Errorf("error while scrap page: %w", err)
-	}
-
-	for _, img := range data.images {
-		if err := si.downloadImage(img, imageSavePath); err != nil {
-			log.Println(err)
-		}
-	}
-
-	return data.links, nil
 }
 
 func (si *scrapperImpl) scrapPage(seed string) (scrapData, error) {
@@ -66,12 +51,12 @@ func (si *scrapperImpl) scrapPage(seed string) (scrapData, error) {
 
 	//  si.find(doc, img, src) -> must be readed like:
 	// "find in the document all 'img' tags that contains 'src' attributes"
-	images, err := si.find(doc, img, src)
+	images, err := si.find(doc, img, src, seed)
 	if err != nil {
 		return scrapData{}, fmt.Errorf("can't extract images: %w", err)
 	}
 
-	links, err := si.find(doc, a, href)
+	links, err := si.find(doc, a, href, seed)
 	if err != nil {
 		return scrapData{}, fmt.Errorf("can't extract links: %w", err)
 	}
@@ -84,7 +69,7 @@ func (si *scrapperImpl) scrapPage(seed string) (scrapData, error) {
 
 // find use github.com/PuerkitoBio/goquery dependency for range through the document and
 // extract elements by key
-func (si *scrapperImpl) find(doc *goquery.Document, elem, key string) ([]string, error) {
+func (si *scrapperImpl) find(doc *goquery.Document, elem, key string, startURL string) ([]string, error) {
 	if doc == nil {
 		return nil, errors.New("the doc is nil")
 	}
@@ -103,8 +88,11 @@ func (si *scrapperImpl) find(doc *goquery.Document, elem, key string) ([]string,
 					if !strings.HasPrefix(attr.Val, "http") {
 						continue
 					}
-
-					res = append(res, attr.Val)
+					base, err := url.Parse(startURL)
+					src, err2 := url.Parse(attr.Val)
+					if err == nil && err2 == nil {
+						res = append(res, base.ResolveReference(src).String())
+					}
 				}
 			}
 		}
@@ -114,26 +102,29 @@ func (si *scrapperImpl) find(doc *goquery.Document, elem, key string) ([]string,
 }
 
 // downloadImage used to save image on disk
-func (si *scrapperImpl) downloadImage(imageLink, imagePath string) error {
+func (si *scrapperImpl) downloadImage(imageLink, imagePath string) (uint64, uint64, error) {
 	if strings.HasSuffix(imageLink, ".svg") {
-		return nil
+		return 0, 0, nil
 	}
 
 	log.Println("download image:", imageLink)
+	start := uint64(time.Now().UnixNano())
 	imageBody, err := si.httpGetter.get(imageLink)
 	if err != nil {
-		return fmt.Errorf("error while get body: %w", err)
+		return 0, 0, fmt.Errorf("error while get body: %w", err)
 	}
+	elapsed := uint64(time.Now().UnixNano()) - start
+
 	defer imageBody.Close()
 
 	imageName, err := parseImageName(imageLink)
 	if err != nil {
-		return fmt.Errorf("error while get img name: %w", err)
+		return 0, 0, fmt.Errorf("error while get img name: %w", err)
 	}
 
 	file, err := os.Create(imagePath + imageName)
 	if err != nil {
-		return fmt.Errorf("error while create file: %w", err)
+		return 0, 0, fmt.Errorf("error while create file: %w", err)
 	}
 	defer file.Close()
 
@@ -141,13 +132,13 @@ func (si *scrapperImpl) downloadImage(imageLink, imagePath string) error {
 	// we use Copy, not ioutil.ReadAll
 	written, err := io.Copy(file, imageBody)
 	if err != nil {
-		return fmt.Errorf("error while write file: %w", err)
+		return 0, 0, fmt.Errorf("error while write file: %w", err)
 	}
 
 	// additional check that we wrote something to a file
 	if written == 0 {
-		return fmt.Errorf("error while write file: nothing saved")
+		return 0, 0, fmt.Errorf("error while write file: nothing saved")
 	}
 
-	return nil
+	return uint64(written), elapsed, nil
 }
